@@ -6,6 +6,7 @@ namespace GraphicalTestApp
     {
         private Vector3 _velocity = new Vector3();
         private Vector3 _acceleration = new Vector3();
+        
 
         public float XVelocity
         {
@@ -22,14 +23,14 @@ namespace GraphicalTestApp
         public float YVelocity
         {
             //## Implement velocity on the Y axis ##//
-            get { return _velocity.x; }
+            get { return _velocity.y; }
             set { _velocity.y = value; }
         }
         public float YAcceleration
         {
             //## Implement acceleration on the Y axis ##//
             get { return _acceleration.y; ; }
-            set { _acceleration.z = value; }
+            set { _acceleration.y = value; }
         }
 
         //Creates an Entity at the specified coordinates
@@ -37,10 +38,13 @@ namespace GraphicalTestApp
         {
             X = x;
             Y = y;
-        }
+                }
 
         public override void Update(float deltaTime)
         {
+            _velocity = _velocity + _acceleration * deltaTime;
+            X += _velocity.x;
+            Y += _velocity.y;
             //## Calculate velocity from acceleration ##//
             //## Calculate position from velocity ##//
             base.Update(deltaTime);

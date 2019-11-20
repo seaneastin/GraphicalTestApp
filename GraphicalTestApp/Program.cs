@@ -14,8 +14,8 @@ namespace GraphicalTestApp
 
             Actor root = new Actor();
             game.Root = root;
-
-
+            Tank tank = new Tank(100, 100);
+            root.AddChild(tank);
             //## Set up game here ##//
 
             game.Run();
