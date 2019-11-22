@@ -8,21 +8,24 @@ namespace GraphicalTestApp
 {
     class Tank : Entity
     {
+        Sprite sprite;
+        AABB hitbox;
         public Tank(float x, float y) : base(x,y)
         {
             X = x;
             Y = y;
 
-            Sprite sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankBlue.png");
+            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankBlue.png");
+           
             AddChild(sprite);
-            AABB hitbox = new AABB(sprite.Width, sprite.Height);
-            
+            hitbox = new AABB(sprite.Width, sprite.Height);
             AddChild(hitbox);
-
 
 
             OnUpdate += moveup;
             OnUpdate += movedown;
+            OnUpdate += rotateleft;
+            OnUpdate += rotateright;
         }
 
         public void moveup(float deltatime)
@@ -63,12 +66,18 @@ namespace GraphicalTestApp
 
         public void rotateleft(float deltatime)
         {
-
+            if(Input.IsKeyDown(65))
+            {
+                Rotate(-1f * deltatime);
+            }
         }
 
         public void rotateright(float deltatime)
         {
-
+            if (Input.IsKeyDown(68))
+            {
+                Rotate(1f * deltatime);
+            }
 
         }
         
