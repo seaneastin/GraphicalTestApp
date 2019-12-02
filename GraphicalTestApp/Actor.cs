@@ -84,11 +84,13 @@ namespace GraphicalTestApp
             if (child.Parent != null)
             {
                 return;
+                
             }
             //Assign this Entity as the child's parent
             child.Parent = this;
             //Add child to collection
-            _children.Add(child);
+
+            _additions.Add(child);
             //## Implement AddChild(Actor) ##//
         }
 
@@ -99,6 +101,7 @@ namespace GraphicalTestApp
             {
                 child.Parent = null;
                 child._localTransform = child._globalTransform;
+                _removals.Add(child);
             }
             //## Implement RemoveChild(Actor) ##//
         }
@@ -188,5 +191,22 @@ namespace GraphicalTestApp
                 child.Draw();
             }
         }
+
+        public float Getm11
+        {
+            get
+            {
+                return _globalTransform.m11;
+            }
+        }
+
+        public float Getm12
+        {
+            get
+            {
+                return _globalTransform.m12;
+            }
+        }
+
     }
 }
