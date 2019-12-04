@@ -34,14 +34,19 @@ namespace GraphicalTestApp
 
         public void OnColide(float deletatime)
         {
-            if (X > Game.gamewidth || Y > Game.gameheight)
+            if (X > Game.gamewidth || Y > Game.gameheight) //if the bullet leaves the play area
             {
-
-                Console.WriteLine("bullet destroyed");
-                Parent.RemoveChild(this);
+                destroy();
             }
         }
 
+
+        public void destroy()
+        {
+
+            Console.WriteLine("bullet destroyed");
+            Parent.RemoveChild(this);
+        }
 
 
 

@@ -64,7 +64,7 @@ namespace GraphicalTestApp
 
         public void restoreammo(float deltatime)
         {
-            if (ammo < maxammo && timer.Seconds >= 5)
+            if (ammo < maxammo && timer.Seconds >= 2x)
             {
                 ammo++;
                 timer.Restart();

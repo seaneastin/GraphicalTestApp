@@ -4,6 +4,8 @@ namespace GraphicalTestApp
 {
     class AABB : Actor
     {
+
+        Raylib.Color _color = Raylib.Color.RED;
         public float Width { get; set; } = 1;
         public float Height { get; set; } = 1;
 
@@ -40,8 +42,16 @@ namespace GraphicalTestApp
 
         public bool DetectCollision(AABB other)
         {
-            
-            
+            //if ()
+            //{
+            //    _color = Raylib.Color.BLUE;
+            //    return true;
+                
+            //}
+            //else
+            //{
+            //    return false;
+            //}
             
             //## Implement DetectCollision(AABB) ##//
             return false;
@@ -59,7 +69,7 @@ namespace GraphicalTestApp
         public override void Draw()
         {
             Raylib.Rectangle rec = new Raylib.Rectangle(Left, Top, Width, Height);
-            Raylib.Raylib.DrawRectangleLinesEx(rec, 1, Raylib.Color.RED);
+            Raylib.Raylib.DrawRectangleLinesEx(rec, 1, _color);
             base.Draw();
         }
     }
