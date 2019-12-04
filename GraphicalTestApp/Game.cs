@@ -4,8 +4,11 @@ using RL = Raylib.Raylib;
 
 namespace GraphicalTestApp
 {
+
     class Game
     {
+        public static int gamewidth;
+        public static int gameheight;
         //The current root Actor
         private Actor _root = null;
         //The next root Actor
@@ -18,6 +21,8 @@ namespace GraphicalTestApp
         {
             RL.InitWindow(width, height, title);
             RL.SetTargetFPS(0);
+            gamewidth = width;
+            gameheight = height;
         }
         
         //Run the game loop

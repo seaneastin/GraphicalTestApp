@@ -8,8 +8,12 @@ namespace GraphicalTestApp
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+
+
+
             Game game = new Game(1280, 760, "Graphical Test Application");
 
             Actor root = new Actor();

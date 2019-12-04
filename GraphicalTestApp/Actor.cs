@@ -96,7 +96,7 @@ namespace GraphicalTestApp
 
         public void RemoveChild(Actor child)
         {
-            bool isMyChild = _children.Remove(child);
+            bool isMyChild = _children.Contains(child);
             if (isMyChild)
             {
                 child.Parent = null;

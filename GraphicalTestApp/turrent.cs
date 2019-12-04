@@ -8,21 +8,22 @@ namespace GraphicalTestApp
 {
     class turrent : Entity
     {
-        int ammo;
+        int maxammo = 5;
+        Timer timer = new Timer();
+        int ammo = 5;
         Sprite tankturrent;
         public turrent(float x, float y) : base(x, y)
         {
-            ammo = 5;
             tankturrent = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/barrelBlue.png");
             tankturrent.X = -5;
-            tankturrent.Y = 0;
+            tankturrent.Y = -40;
             X = x;
             Y = y;
             AddChild(tankturrent);
-
             OnUpdate += rotateleft;
             OnUpdate += rotateright;
             OnUpdate += fire;
+            OnUpdate += restoreammo;
         }
         public void rotateleft(float deltatime)
         {
@@ -49,18 +50,27 @@ namespace GraphicalTestApp
             {
                 if (ammo > 0)
                 {
-                    Bullet bullet = new Bullet(0, 0);
+                    Bullet bullet = new Bullet(XAbsolute, YAbsolute);
                     Parent.Parent.AddChild(bullet);
                     Vector3 facing = new Vector3(Getm12, Getm11, 0);
-                    bullet.XAcceleration = facing.x * .09f;
-                    bullet.YAcceleration = facing.y * .09f;
+                    bullet.Rotate(GetRotation());
+                    bullet.XAcceleration = facing.x * -200;
+                    bullet.YAcceleration = facing.y * -200;
                     ammo--;
+                    Console.WriteLine("ammo is now (" + ammo + "/5)");
                 }
             }
         }
 
-        public void restoreammo()
+        public void restoreammo(float deltatime)
         {
+            if (ammo < maxammo && timer.Seconds >= 5)
+            {
+                ammo++;
+                timer.Restart();
+                Console.WriteLine("ammo restored.");
+                Console.WriteLine("ammo is now (" + ammo + "/5)");
+            }
 
         }
 

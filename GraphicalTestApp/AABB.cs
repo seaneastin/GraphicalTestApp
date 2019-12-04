@@ -40,12 +40,17 @@ namespace GraphicalTestApp
 
         public bool DetectCollision(AABB other)
         {
+            
+            
+            
             //## Implement DetectCollision(AABB) ##//
             return false;
         }
 
         public bool DetectCollision(Vector3 point)
         {
+
+
             //## Implement DetectCollision(Vector3) ##//
             return false;
         }

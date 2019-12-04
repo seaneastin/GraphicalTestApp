@@ -8,7 +8,6 @@ namespace GraphicalTestApp
 {
     class Tank : Entity
     {
-        bool isrotating = false;
         Sprite sprite;
         AABB hitbox;
         turrent turrent;
@@ -39,12 +38,12 @@ namespace GraphicalTestApp
 
         public void moveup(float deltatime)
         {
-            if(Input.IsKeyPressed(87)) //W
+            if(Input.IsKeyDown(87)) //W
             {
                 Vector3 facing = new Vector3(Getm12, Getm11, 0);
 
-                XAcceleration = facing.x * -.02f;
-                YAcceleration = facing.y * -.02f;
+                XAcceleration = facing.x * -50;
+                YAcceleration = facing.y * -50;
             }
            else if(Input.IsKeyReleased(87)) //W
             {
@@ -63,12 +62,12 @@ namespace GraphicalTestApp
 
         public void movedown(float deltatime)
         {
-            if (Input.IsKeyPressed(83))
+            if (Input.IsKeyDown(83))
             {
-                Vector3 facing = new Vector3(Getm12, Getm11, 0);
+                Vector3 facing = new Vector3(Getm12, Getm11, 0) *50;
 
-                XAcceleration = facing.x * .02f;
-                YAcceleration = facing.y * .02f;
+                XAcceleration = facing.x;
+                YAcceleration = facing.y;
             }
             else if (Input.IsKeyReleased(83))
             {
@@ -88,11 +87,9 @@ namespace GraphicalTestApp
             if(Input.IsKeyDown(65) )
             {
                 Rotate(-1f * deltatime);
-                isrotating = true;
             }
             else if (Input.IsKeyReleased(65))
             {
-                isrotating = false;
             }
         }
 
@@ -101,11 +98,9 @@ namespace GraphicalTestApp
             if (Input.IsKeyDown(68))
             {
                 Rotate(1f * deltatime);
-                isrotating = true;
             }
             else if (Input.IsKeyReleased(68))
             {
-                isrotating = false;
             }
            
 
