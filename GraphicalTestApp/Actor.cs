@@ -26,7 +26,6 @@ namespace GraphicalTestApp
         
         public float X
         {
-            //## Implement the relative X coordinate ##//
             get { return _localTransform.m13; }
             set { _localTransform.SetTranslation(value, Y, 1);
                 UpdateTransform();
@@ -34,12 +33,10 @@ namespace GraphicalTestApp
         }
         public float XAbsolute
         {
-            //## Implement the absolute X coordinate ##//
             get { return _globalTransform.m13; }
         }
         public float Y
         {
-            //## Implement the relative Y coordinate ##//
             get { return _localTransform.m23; }
             set
             {
@@ -49,14 +46,11 @@ namespace GraphicalTestApp
         }
         public float YAbsolute
         {
-            //## Implement the absolute Y coordinate ##//
             get { return _globalTransform.m23; }
         }
 
         public float GetRotation()
         {
-
-            //## Implement getting the rotation of _localTransform ##//
             return (float)Math.Atan2(_globalTransform.m21, _globalTransform.m11);
         }
 
@@ -64,18 +58,15 @@ namespace GraphicalTestApp
         {
             _localTransform.RotateZ(radians);
             UpdateTransform();
-            //## Implement rotating _localTransform ##//
         }
 
         public float GetScale()
         {
-            //## Implement getting the scale of _localTransform ##//
             return 1;
         }
 
         public void Scale(float scale)
         {
-            //## Implement scaling _localTransform ##//
         }
 
         public void AddChild(Actor child)
@@ -91,7 +82,6 @@ namespace GraphicalTestApp
             //Add child to collection
 
             _additions.Add(child);
-            //## Implement AddChild(Actor) ##//
         }
 
         public void RemoveChild(Actor child)
@@ -103,7 +93,6 @@ namespace GraphicalTestApp
                 child._localTransform = child._globalTransform;
                 _removals.Add(child);
             }
-            //## Implement RemoveChild(Actor) ##//
         }
 
         public void UpdateTransform()
@@ -121,7 +110,6 @@ namespace GraphicalTestApp
             {
                 child.UpdateTransform();
             }
-            //## Implment UpdateTransform() ##//
         }
 
         //Call the OnStart events of the Actor and its children
@@ -171,6 +159,7 @@ namespace GraphicalTestApp
 
             _removals.Clear();
 
+            
 
             //Update all of this Actor's children
             foreach (Actor child in _children)

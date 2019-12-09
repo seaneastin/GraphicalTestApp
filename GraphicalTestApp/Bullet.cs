@@ -14,7 +14,7 @@ namespace GraphicalTestApp
             {
             X = x;
             Y = y;
-            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Bullets/bulletBlue.png");
+            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Bullets/bulletBlue_outline.png");
             AddChild(sprite);
             hitbox = new AABB(sprite.Width, sprite.Height);
             AddChild(hitbox);
@@ -34,10 +34,13 @@ namespace GraphicalTestApp
 
         public void OnColide(float deletatime)
         {
-            if (X > Game.gamewidth || Y > Game.gameheight) //if the bullet leaves the play area
+            hitbox.DetectCollision(Program.player1.hitbox);
+            if (X > Game.gamewidth || Y > Game.gameheight || X < 0 || Y < 0) //if the bullet leaves the screen
             {
                 destroy();
+                
             }
+
         }
 
 
@@ -47,6 +50,14 @@ namespace GraphicalTestApp
             Console.WriteLine("bullet destroyed");
             Parent.RemoveChild(this);
         }
+
+        public void fire()
+        {
+            //may use ths to organize code
+        }
+
+
+
 
 
 

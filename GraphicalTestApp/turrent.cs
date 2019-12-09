@@ -12,19 +12,28 @@ namespace GraphicalTestApp
         Timer timer = new Timer();
         int ammo = 5;
         Sprite tankturrent;
+        public AABB hitbox;
         public turrent(float x, float y) : base(x, y)
         {
+
             tankturrent = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/barrelBlue.png");
+            hitbox = new AABB(tankturrent.Width, tankturrent.Height);
             tankturrent.X = -5;
             tankturrent.Y = -40;
             X = x;
             Y = y;
+
+
+
             AddChild(tankturrent);
             OnUpdate += rotateleft;
             OnUpdate += rotateright;
             OnUpdate += fire;
             OnUpdate += restoreammo;
+            AddChild(hitbox);
+
         }
+
         public void rotateleft(float deltatime)
         {
             if (Input.IsKeyDown(81))
@@ -54,8 +63,8 @@ namespace GraphicalTestApp
                     Parent.Parent.AddChild(bullet);
                     Vector3 facing = new Vector3(Getm12, Getm11, 0);
                     bullet.Rotate(GetRotation());
-                    bullet.XAcceleration = facing.x * -200;
-                    bullet.YAcceleration = facing.y * -200;
+                    //bullet.XAcceleration = facing.x * -200;
+                    //bullet.YAcceleration = facing.y * -200;
                     ammo--;
                     Console.WriteLine("ammo is now (" + ammo + "/5)");
                 }
@@ -64,7 +73,7 @@ namespace GraphicalTestApp
 
         public void restoreammo(float deltatime)
         {
-            if (ammo < maxammo && timer.Seconds >= 2x)
+            if (ammo < maxammo && timer.Seconds >= 2)
             {
                 ammo++;
                 timer.Restart();

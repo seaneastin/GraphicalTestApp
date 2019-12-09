@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace GraphicalTestApp
 {
-    class Tank : Entity
+    class Tank2 : Entity
     {
         Sprite sprite;
        public  AABB hitbox;
         turrent turrent;
-        public Tank(float x, float y) : base(x,y)
+        public Tank2(float x, float y) : base(x,y)
         {
             X = x;
             Y = y;
@@ -24,10 +24,10 @@ namespace GraphicalTestApp
             turrent = new turrent(0, 0);
             AddChild(turrent);
 
-            OnUpdate += moveup;
-            OnUpdate += movedown;
-            OnUpdate += rotateleft;
-            OnUpdate += rotateright;
+            //OnUpdate += moveup;
+            //OnUpdate += movedown;
+            //OnUpdate += rotateleft;
+            //OnUpdate += rotateright;
             OnUpdate += ScreenWrap;
             OnUpdate += Drawcords;
             OnUpdate += TestCollision;

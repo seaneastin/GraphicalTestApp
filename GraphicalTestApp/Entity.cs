@@ -10,25 +10,21 @@ namespace GraphicalTestApp
 
         public float XVelocity
         {
-            //## Implement velocity on the X axis ##//
             get { return _velocity.x; }
             set { _velocity.x = value; }
         }
         public float XAcceleration
         {
-            //## Implement acceleration on the X axis ##//
             get { return _acceleration.x; }
             set { _acceleration.x = value; }
         }
         public float YVelocity
         {
-            //## Implement velocity on the Y axis ##//
             get { return _velocity.y; }
             set { _velocity.y = value; }
         }
         public float YAcceleration
         {
-            //## Implement acceleration on the Y axis ##//
             get { return _acceleration.y; ; }
             set { _acceleration.y = value; }
         }
@@ -45,9 +41,8 @@ namespace GraphicalTestApp
             _velocity = _velocity + _acceleration * deltaTime;
             X += _velocity.x * deltaTime;
             Y += _velocity.y * deltaTime;
-            //## Calculate velocity from acceleration ##//
-            //## Calculate position from velocity ##//
             base.Update(deltaTime);
         }
+        
     }
 }
