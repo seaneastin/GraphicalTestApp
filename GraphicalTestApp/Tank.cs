@@ -8,9 +8,9 @@ namespace GraphicalTestApp
 {
     class Tank : Entity
     {
-        Sprite sprite;
+      private Sprite sprite;
        public  AABB hitbox;
-        turrent turrent;
+        Turrent turrent;
         public Tank(float x, float y) : base(x,y)
         {
             X = x;
@@ -21,13 +21,13 @@ namespace GraphicalTestApp
             AddChild(sprite);
             hitbox = new AABB(sprite.Width, sprite.Height);
             AddChild(hitbox);
-            turrent = new turrent(0, 0);
+            turrent = new Turrent(0, 0);
             AddChild(turrent);
 
-            OnUpdate += moveup;
-            OnUpdate += movedown;
-            OnUpdate += rotateleft;
-            OnUpdate += rotateright;
+            OnUpdate += Moveup;
+            OnUpdate += Movedown;
+            OnUpdate += Rotateleft;
+            OnUpdate += RotateRight;
             OnUpdate += ScreenWrap;
             OnUpdate += Drawcords;
             OnUpdate += TestCollision;
@@ -38,7 +38,7 @@ namespace GraphicalTestApp
             Raylib.Raylib.DrawText(" X: " + X + " Y: " + Y,5,5, 5, Raylib.Color.WHITE);
         }
 
-        public void moveup(float deltatime)
+        public void Moveup(float deltatime)
         {
             if(Input.IsKeyDown(87)) //W
             {
@@ -64,7 +64,7 @@ namespace GraphicalTestApp
            // hitbox.DetectCollision();
         }
 
-        public void movedown(float deltatime)
+        public void Movedown(float deltatime)
         {
             if (Input.IsKeyDown(83))
             {
@@ -86,7 +86,7 @@ namespace GraphicalTestApp
             ////}
         }
 
-        public void rotateleft(float deltatime)
+        public void Rotateleft(float deltatime)
         {
             if(Input.IsKeyDown(65) )
             {
@@ -97,7 +97,7 @@ namespace GraphicalTestApp
             }
         }
 
-        public void rotateright(float deltatime)
+        public void RotateRight(float deltatime)
         {
             if (Input.IsKeyDown(68))
             {
@@ -112,28 +112,28 @@ namespace GraphicalTestApp
 
         public void ScreenWrap(float deltatime)
         {
-            if (X > Game.gamewidth || Y > Game.gameheight || X < 0 || Y < 0) //if the tank leaves the screen
+            if (X > Game.gameWidth || Y > Game.gameHeight || X < 0 || Y < 0) //if the tank leaves the screen
             {
                 Console.WriteLine("tank is offscreen");
-                if(X > Game.gamewidth)
+                if(X > Game.gameWidth)
                 {
                    X = 0 + 5;
                 }
 
                 if(X < 0)
                 {
-                    X = Game.gamewidth - 5;
+                    X = Game.gameWidth - 5;
                 }
 
 
-                if(Y > Game.gameheight)
+                if(Y > Game.gameHeight)
                 {
                     Y = 0 + 5;
                 }
 
                 if(Y < 0)
                 {
-                    Y = Game.gameheight - 5;
+                    Y = Game.gameHeight - 5;
                 }
 
 

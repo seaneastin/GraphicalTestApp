@@ -9,7 +9,7 @@ namespace GraphicalTestApp
     class Program
     {
         public static Tank player1;
-        public static Tank2 player2;
+        //public static Tank2 player2;
         static void Main(string[] args)
         {
 
@@ -20,8 +20,8 @@ namespace GraphicalTestApp
             Actor root = new Actor();
             game.Root = root;
             player1 = new Tank(100, 100);
-            player2 = new Tank2(-100, -100);
-            root.AddChild(player2);
+            //player2 = new Tank2(-100, -100);
+           // root.AddChild(player2);
             root.AddChild(player1);
             //## Set up game here ##//
 

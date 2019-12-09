@@ -35,7 +35,7 @@ namespace GraphicalTestApp
         public void OnColide(float deletatime)
         {
             hitbox.DetectCollision(Program.player1.hitbox);
-            if (X > Game.gamewidth || Y > Game.gameheight || X < 0 || Y < 0) //if the bullet leaves the screen
+            if (X > Game.gameWidth || Y > Game.gameHeight || X < 0 || Y < 0) //if the bullet leaves the screen
             {
                 destroy();
                 

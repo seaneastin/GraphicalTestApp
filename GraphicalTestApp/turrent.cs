@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace GraphicalTestApp
 {
-    class turrent : Entity
+    class Turrent : Entity
     {
         int maxammo = 5;
         Timer timer = new Timer();
         int ammo = 5;
         Sprite tankturrent;
         public AABB hitbox;
-        public turrent(float x, float y) : base(x, y)
+        public Turrent(float x, float y) : base(x, y)
         {
 
             tankturrent = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/barrelBlue.png");
