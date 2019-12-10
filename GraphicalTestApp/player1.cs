@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace GraphicalTestApp
 {
-    class Tank : Entity
+    class Player1 : Entity
     {
-      private Sprite sprite;
+      private Sprite _sprite;
        public  AABB hitbox;
-        Turrent turrent;
-        public Tank(float x, float y) : base(x,y)
+        Turret turrent;
+        public Player1(float x, float y) : base(x,y)
         {
             X = x;
             Y = y;
 
-            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankBlue.png");
+            _sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankBlue.png");
             
-            AddChild(sprite);
-            hitbox = new AABB(sprite.Width, sprite.Height);
+            AddChild(_sprite);
+            hitbox = new AABB(_sprite.Width, _sprite.Height);
             AddChild(hitbox);
-            turrent = new Turrent(0, 0);
+            turrent = new Turret(0, 0);
             AddChild(turrent);
 
             OnUpdate += Moveup;
@@ -35,7 +35,9 @@ namespace GraphicalTestApp
 
         public void Drawcords(float deltatime)
         {
-            Raylib.Raylib.DrawText(" X: " + X + " Y: " + Y,5,5, 5, Raylib.Color.WHITE);
+            //disable this on realease
+            Raylib.Raylib.DrawText("Player1   X: " + X + " Y: " + Y, 5, 5, 20, Raylib.Color.WHITE);
+            Raylib.Raylib.DrawText("player1 Top: " + hitbox.Top + "Bottom: " +  hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 12,30, 18, Raylib.Color.WHITE);
         }
 
         public void Moveup(float deltatime)
@@ -61,7 +63,7 @@ namespace GraphicalTestApp
 
         public void TestCollision(float deltatime)
         {
-           // hitbox.DetectCollision();
+            hitbox.DetectCollision(Program.player2.hitbox);
         }
 
         public void Movedown(float deltatime)
@@ -75,10 +77,10 @@ namespace GraphicalTestApp
             }
             else if (Input.IsKeyReleased(83))
             {
-                //XAcceleration = 0;
-                //XVelocity = 0;
-                //YAcceleration = 0;
-                //YVelocity = 0;
+                XAcceleration = 0;
+                XVelocity = 0;
+                YAcceleration = 0;
+                YVelocity = 0;
             }
             ////if (YVelocity < -.01f)
             ////{

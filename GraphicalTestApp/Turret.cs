@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace GraphicalTestApp
 {
-    class Turrent : Entity
+    class Turret : Entity
     {
         int maxammo = 5;
         Timer timer = new Timer();
         int ammo = 5;
         Sprite tankturrent;
-        public AABB hitbox;
-        public Turrent(float x, float y) : base(x, y)
+        public Turret(float x, float y) : base(x, y)
         {
 
             tankturrent = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/barrelBlue.png");
-            hitbox = new AABB(tankturrent.Width, tankturrent.Height);
+            
             tankturrent.X = -5;
             tankturrent.Y = -40;
             X = x;
@@ -30,7 +29,6 @@ namespace GraphicalTestApp
             OnUpdate += rotateright;
             OnUpdate += fire;
             OnUpdate += restoreammo;
-            AddChild(hitbox);
 
         }
 
@@ -63,8 +61,8 @@ namespace GraphicalTestApp
                     Parent.Parent.AddChild(bullet);
                     Vector3 facing = new Vector3(Getm12, Getm11, 0);
                     bullet.Rotate(GetRotation());
-                    //bullet.XAcceleration = facing.x * -200;
-                    //bullet.YAcceleration = facing.y * -200;
+                    bullet.XAcceleration = facing.x * -200;
+                    bullet.YAcceleration = facing.y * -200;
                     ammo--;
                     Console.WriteLine("ammo is now (" + ammo + "/5)");
                 }
