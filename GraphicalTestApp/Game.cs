@@ -7,10 +7,10 @@ namespace GraphicalTestApp
 
     class Game
     {
-        public static int gameWidth;
-        public static int gameHeight;
+        public static int gameWidth; // the windows width
+        public static int gameHeight;// the windows height
         //The current root Actor
-        private Actor _root = null;
+        private Actor _root = null; 
         //The next root Actor
         private Actor _next = null;
         //The Timer for the entire Game
