@@ -10,11 +10,13 @@ namespace GraphicalTestApp
     {
         AABB hitbox;
         Sprite sprite;
-        public Bullet(float x, float y) : base(x,y)
+        int _playernumber;
+        public Bullet(float x, float y, int playernumber, string Sprite) : base(x,y)
             {
+            _playernumber = playernumber;
             X = x;
             Y = y;
-            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Bullets/bulletBlue_outline.png");
+            sprite = new Sprite(Sprite);
             AddChild(sprite);
             hitbox = new AABB(sprite.Width, sprite.Height);
             AddChild(hitbox);
@@ -34,7 +36,19 @@ namespace GraphicalTestApp
 
         public void OnColide(float deletatime)
         {
-            hitbox.DetectCollision(Program.player1.hitbox);
+            if (hitbox.DetectCollision(Program.player1.hitbox) && _playernumber != 1)
+            {
+                Program.player1.Destroy();
+            }
+
+            if (hitbox.DetectCollision(Program.player2.hitbox) && _playernumber != 2)
+            {
+                Program.player2.Destroy();
+            }
+
+
+
+
             if (X > Game.gameWidth || Y > Game.gameHeight || X < 0 || Y < 0) //if the bullet leaves the screen
             {
                 destroy();

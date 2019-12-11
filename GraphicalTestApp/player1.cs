@@ -10,7 +10,8 @@ namespace GraphicalTestApp
     {
       private Sprite _sprite;
        public  AABB hitbox;
-        Turret turrent;
+        Turret turret;
+  
         public Player1(float x, float y) : base(x,y)
         {
             X = x;
@@ -21,8 +22,8 @@ namespace GraphicalTestApp
             AddChild(_sprite);
             hitbox = new AABB(_sprite.Width, _sprite.Height);
             AddChild(hitbox);
-            turrent = new Turret(0, 0);
-            AddChild(turrent);
+            turret = new Turret(0, 0, "GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/barrelBlue.png", 1, "GraphicalTestApp/Assets/topdowntanks/PNG/Bullets/bulletBlue_outline.png");
+            AddChild(turret);
 
             OnUpdate += Moveup;
             OnUpdate += Movedown;
@@ -30,8 +31,23 @@ namespace GraphicalTestApp
             OnUpdate += RotateRight;
             OnUpdate += ScreenWrap;
             OnUpdate += Drawcords;
-            OnUpdate += TestCollision;
+            OnUpdate += CollidewithTank;
         }
+
+
+        ~Player1()
+        {
+            if (Parent != null)
+            {
+                Parent.RemoveChild(this);
+            }
+
+            RemoveChild(hitbox);
+            RemoveChild(_sprite);
+
+        }
+
+
 
         public void Drawcords(float deltatime)
         {
@@ -42,7 +58,7 @@ namespace GraphicalTestApp
 
         public void Moveup(float deltatime)
         {
-            if(Input.IsKeyDown(87)) //W
+            if (Input.IsKeyDown(87)) //W
             {
                 Vector3 facing = new Vector3(Getm12, Getm11, 0);
 
@@ -61,9 +77,13 @@ namespace GraphicalTestApp
             
         }
 
-        public void TestCollision(float deltatime)
+        public void CollidewithTank(float deltatime)
         {
-            hitbox.DetectCollision(Program.player2.hitbox);
+            if(hitbox.DetectCollision(Program.player2.hitbox))
+            {
+               // Destroy();
+                //Program.player2.Destroy();
+            }
         }
 
         public void Movedown(float deltatime)
@@ -140,6 +160,17 @@ namespace GraphicalTestApp
 
 
             }
+        }
+
+        public void Destroy()
+        {
+            if (Parent != null)
+            {
+                Parent.RemoveChild(this);
+            }
+            RemoveChild(hitbox);
+            RemoveChild(turret);
+            
         }
         
     }

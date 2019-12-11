@@ -38,6 +38,11 @@ namespace GraphicalTestApp
 
         public override void Update(float deltaTime)
         {
+            if(Math.Abs(_velocity.x) > 100 || Math.Abs(_velocity.y) > 100)
+            {
+                _acceleration.x = 0;
+                _acceleration.y = 0;
+            }
             _velocity = _velocity + _acceleration * deltaTime;
             X += _velocity.x * deltaTime;
             Y += _velocity.y * deltaTime;

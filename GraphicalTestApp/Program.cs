@@ -19,8 +19,8 @@ namespace GraphicalTestApp
 
             Actor root = new Actor();
             game.Root = root;
-            player1 = new Player1(100, 100);
-            player2 = new Player2(-100, -100);
+            player1 = new Player1(500, 300);
+            player2 = new Player2(200, 300);
             root.AddChild(player1);
             root.AddChild(player2);
             //## Set up game here ##//

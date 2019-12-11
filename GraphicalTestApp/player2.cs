@@ -8,21 +8,21 @@ namespace GraphicalTestApp
 {
     class Player2 : Entity
     {
-      private Sprite sprite;
-       public  AABB hitbox;
-        Turret turrent;
-        public Player2(float x, float y) : base(x,y)
+        private Sprite sprite;
+        public AABB hitbox;
+        Turret turret;
+        public Player2(float x, float y) : base(x, y)
         {
             X = x;
             Y = y;
 
-            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankBlue.png");
-            
+            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankGreen.png");
+
             AddChild(sprite);
             hitbox = new AABB(sprite.Width, sprite.Height);
             AddChild(hitbox);
-            turrent = new Turret(0, 0);
-            AddChild(turrent);
+            turret = new Turret(0, 0, "GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/barrelGreen.png", 2, "GraphicalTestApp/Assets/topdowntanks/PNG/Bullets/bulletGreen_outline.png");
+            AddChild(turret);
 
             OnUpdate += Moveup;
             OnUpdate += Movedown;
@@ -30,27 +30,40 @@ namespace GraphicalTestApp
             OnUpdate += RotateRight;
             OnUpdate += ScreenWrap;
             OnUpdate += Drawcords;
-            OnUpdate += TestCollision;
+            OnUpdate += CollideWithTank;
+        }
+
+
+        ~Player2()
+        {
+            if (Parent != null)
+            {
+                Parent.RemoveChild(this);
+            }
+
+            RemoveChild(hitbox);
+            RemoveChild(sprite);
+
         }
 
         public void Drawcords(float deltatime)
         {
-           
+
             //disable this on realease
             Raylib.Raylib.DrawText("Player2   X: " + X + " Y: " + Y, 1000, 5, 18, Raylib.Color.WHITE);
-            Raylib.Raylib.DrawText("player2 Top: " + hitbox.Top + "Bottom: " +  hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 700, 30,18, Raylib.Color.WHITE);
+            Raylib.Raylib.DrawText("player2 Top: " + hitbox.Top + "Bottom: " + hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 700, 30, 18, Raylib.Color.WHITE);
         }
 
         public void Moveup(float deltatime)
         {
-            if(Input.IsKeyDown(73)) //W
+            if (Input.IsKeyDown(73)) //W
             {
                 Vector3 facing = new Vector3(Getm12, Getm11, 0);
 
                 XAcceleration = facing.x * -100;
                 YAcceleration = facing.y * -100;
             }
-           else if(Input.IsKeyReleased(73)) //W
+            else if (Input.IsKeyReleased(73)) //W
             {
 
                 XAcceleration = 0;
@@ -59,12 +72,18 @@ namespace GraphicalTestApp
                 YAcceleration = 0;
                 YVelocity = 0;
             }
-            
+
         }
 
-        public void TestCollision(float deltatime)
+        public void CollideWithTank(float deltatime)
         {
-            hitbox.DetectCollision(Program.player1.hitbox);
+
+            if (hitbox.DetectCollision(Program.player1.hitbox))
+            {
+                //{
+                //    Destroy();
+
+            }
         }
 
         public void Movedown(float deltatime)
@@ -91,7 +110,7 @@ namespace GraphicalTestApp
 
         public void Rotateleft(float deltatime)
         {
-            if(Input.IsKeyDown(74) )
+            if (Input.IsKeyDown(74))
             {
                 Rotate(-1f * deltatime);
             }
@@ -109,7 +128,7 @@ namespace GraphicalTestApp
             else if (Input.IsKeyReleased(76))
             {
             }
-           
+
 
         }
 
@@ -118,30 +137,40 @@ namespace GraphicalTestApp
             if (X > Game.gameWidth || Y > Game.gameHeight || X < 0 || Y < 0) //if the tank leaves the screen
             {
                 Console.WriteLine("tank is offscreen");
-                if(X > Game.gameWidth)
+                if (X > Game.gameWidth)
                 {
-                   X = 0 + 5;
+                    X = 0 + 5;
                 }
 
-                if(X < 0)
+                if (X < 0)
                 {
                     X = Game.gameWidth - 5;
                 }
 
 
-                if(Y > Game.gameHeight)
+                if (Y > Game.gameHeight)
                 {
                     Y = 0 + 5;
                 }
 
-                if(Y < 0)
+                if (Y < 0)
                 {
                     Y = Game.gameHeight - 5;
                 }
 
 
             }
+
+
         }
-        
+        public void Destroy()
+        {
+            if (Parent != null)
+            {
+                Parent.RemoveChild(this);
+            }
+            RemoveChild(hitbox);
+            RemoveChild(turret);
+        }
     }
 }
