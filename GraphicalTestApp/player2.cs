@@ -57,14 +57,14 @@ namespace GraphicalTestApp
 
         public void Moveup(float deltatime)
         {
-            if (Input.IsKeyDown(87)) //W
+            if (Input.IsKeyDown(73)) //W
             {
                 Vector3 facing = new Vector3(Getm12, Getm11, 0);
 
                 XAcceleration = facing.x * -100;
                 YAcceleration = facing.y * -100;
             }
-            else if (Input.IsKeyReleased(87)) //W
+            else if (Input.IsKeyReleased(73)) //W
             {
 
                 XAcceleration = 0;
@@ -80,14 +80,14 @@ namespace GraphicalTestApp
 
         public void Movedown(float deltatime)
         {
-            if (Input.IsKeyDown(83))
+            if (Input.IsKeyDown(75))
             {
                 Vector3 facing = new Vector3(Getm12, Getm11, 0) * 100;
 
                 XAcceleration = facing.x;
                 YAcceleration = facing.y;
             }
-            else if (Input.IsKeyReleased(83))
+            else if (Input.IsKeyReleased(75))
             {
                 XAcceleration = 0;
                 XVelocity = 0;
@@ -102,22 +102,22 @@ namespace GraphicalTestApp
 
         public void Rotateleft(float deltatime)
         {
-            if (Input.IsKeyDown(65))
+            if (Input.IsKeyDown(74))
             {
                 Rotate(-1f * deltatime);
             }
-            else if (Input.IsKeyReleased(65))
+            else if (Input.IsKeyReleased(74))
             {
             }
         }
 
         public void RotateRight(float deltatime)
         {
-            if (Input.IsKeyDown(68))
+            if (Input.IsKeyDown(76))
             {
                 Rotate(1f * deltatime);
             }
-            else if (Input.IsKeyReleased(68))
+            else if (Input.IsKeyReleased(76))
             {
             }
 
