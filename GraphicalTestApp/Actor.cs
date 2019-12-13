@@ -65,9 +65,6 @@ namespace GraphicalTestApp
             return 1;
         }
 
-        public void Scale(float scale)
-        {
-        }
 
         public void AddChild(Actor child)
         {

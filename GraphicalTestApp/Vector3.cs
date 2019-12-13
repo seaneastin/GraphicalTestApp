@@ -12,22 +12,6 @@ namespace GraphicalTestApp
         public float y;
         public float z;
 
-
-        public static Vector3 Min(Vector3 a, Vector3 b)
-        {
-            return new Vector3(Math.Min(a.x, b.x), Math.Min(a.y, b.y), Math.Min(a.z, b.z));
-        }
-
-        public static Vector3 Max(Vector3 a, Vector3 b)
-        {
-            return new Vector3(Math.Max(a.x, a.y), Math.Max(a.y, b.y), Math.Max(a.z, b.z));
-        }
-
-        public static Vector3 Clamp(Vector3 t, Vector3 a, Vector3 b)
-        {
-            return Max(a, Min(b, t));
-        }
-
         public Vector3()
         {
             x = 0;
@@ -75,57 +59,11 @@ namespace GraphicalTestApp
         }
 
 
-        public float Magnitude()
-        {
-            return (float)Math.Sqrt(x * x + y * y + z * z);
-        }
-
-        public float MagnitudeSqr()
-        {
-            return (x * x + y * y + z * z);
-        }
-
-        public float Distance(Vector3 other)
-        {
-            float diffX = x - other.x;
-            float diffY = y - other.y;
-            float diffZ = z - other.z;
-            return (float)Math.Sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-        }
-
-        public void Normalize()
-        {
-            float m = Magnitude();
-            this.x /= m;
-            this.y /= m;
-            this.z /= m;
-        }
-
-        public Vector3 GetNormalised()
-        {
-            return (this / Magnitude());
-        }
-
-        public float DotProduct(Vector3 other)
-        {
-            return ((x * other.x) + (y * other.y) + (z * other.z));
-        }
-
-        public Vector3 CrossProduct(Vector3 other)
-        {
-            return new Vector3(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
-        }
 
 
-        public float AngleBetween(Vector3 other)
-        {
-            Vector3 a = GetNormalised();
-            Vector3 b = other.GetNormalised();
 
-            float d = a.DotProduct(b);
 
-            return (float)Math.Acos(d);
-        }
+
 
 
     }

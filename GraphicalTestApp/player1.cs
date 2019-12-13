@@ -53,8 +53,8 @@ namespace GraphicalTestApp
         {
             //this is not to be in the game on realease
             //disable this on realease
-            Raylib.Raylib.DrawText("Player1   X: " + X + " Y: " + Y, 5, 5, 20, Raylib.Color.WHITE);
-            Raylib.Raylib.DrawText("player1 Top: " + hitbox.Top + "Bottom: " +  hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 12,30, 18, Raylib.Color.WHITE);
+            //Raylib.Raylib.DrawText("Player1   X: " + X + " Y: " + Y, 5, 5, 20, Raylib.Color.WHITE);
+            //Raylib.Raylib.DrawText("player1 Top: " + hitbox.Top + "Bottom: " +  hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 12,30, 18, Raylib.Color.WHITE);
         }
 
 

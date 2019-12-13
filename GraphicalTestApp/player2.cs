@@ -50,8 +50,8 @@ namespace GraphicalTestApp
         {
 
             //disable this on realease
-            Raylib.Raylib.DrawText("Player2   X: " + X + " Y: " + Y, 1000, 5, 18, Raylib.Color.WHITE);
-            Raylib.Raylib.DrawText("player2 Top: " + hitbox.Top + "Bottom: " + hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 700, 30, 18, Raylib.Color.WHITE);
+            //Raylib.Raylib.DrawText("Player2   X: " + X + " Y: " + Y, 1000, 5, 18, Raylib.Color.WHITE);
+            //Raylib.Raylib.DrawText("player2 Top: " + hitbox.Top + "Bottom: " + hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 700, 30, 18, Raylib.Color.WHITE);
         }
         //this is all the functions for movement
 

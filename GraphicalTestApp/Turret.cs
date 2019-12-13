@@ -112,11 +112,23 @@ namespace GraphicalTestApp
 
         public void restoreammo(float deltatime) //restores ammo to the player
         {
+            if (_playernumber == 1)
+            {
+                Raylib.Raylib.DrawText("Player1   Ammo: " + ammo, 5, 5, 20, Raylib.Color.WHITE);
+            }
+            if (_playernumber == 2)
+            {
+                Raylib.Raylib.DrawText("Player2     Ammo: " + ammo, 1000, 5, 18, Raylib.Color.WHITE);
+            }
             if (ammo < maxammo && timer.Seconds >= 2)
             {
                 ammo++;
                 timer.Restart();
                 Console.WriteLine("ammo restored.");
+                
+
+
+
                 Console.WriteLine("ammo is now (" + ammo + "/5)");
             }
 

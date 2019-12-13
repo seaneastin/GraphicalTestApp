@@ -48,7 +48,7 @@ namespace GraphicalTestApp
 
                 //Draw the active Scene
                 RL.BeginDrawing();
-                RL.DrawFPS(20, 20);
+                //RL.DrawFPS(20, 20);
                 RL.ClearBackground(Color.BLACK);
                 _root.Draw();
                 RL.EndDrawing();

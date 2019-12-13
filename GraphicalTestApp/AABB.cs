@@ -68,7 +68,7 @@ namespace GraphicalTestApp
         public override void Draw()
         {
             Raylib.Rectangle rec = new Raylib.Rectangle(Left, Top, Width, Height);
-            Raylib.Raylib.DrawRectangleLinesEx(rec, 1, _color);
+           // Raylib.Raylib.DrawRectangleLinesEx(rec, 1, _color); uncomment this when hitboxes need to be shown
             base.Draw();
         }
     }
