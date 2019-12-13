@@ -30,7 +30,7 @@ namespace GraphicalTestApp
             OnUpdate += Rotateleft;
             OnUpdate += RotateRight;
             OnUpdate += ScreenWrap;
-            OnUpdate += Drawcords;
+            OnDraw += Drawdebugstuff;
             OnUpdate += CollidewithTank;
         }
 
@@ -49,13 +49,18 @@ namespace GraphicalTestApp
 
 
 
-        public void Drawcords(float deltatime)
+        public void Drawdebugstuff()
         {
+            //this is not to be in the game on realease
             //disable this on realease
             Raylib.Raylib.DrawText("Player1   X: " + X + " Y: " + Y, 5, 5, 20, Raylib.Color.WHITE);
             Raylib.Raylib.DrawText("player1 Top: " + hitbox.Top + "Bottom: " +  hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 12,30, 18, Raylib.Color.WHITE);
         }
 
+
+
+        //this is all the functions for movement
+       
         public void Moveup(float deltatime)
         {
             if (Input.IsKeyDown(87)) //W
@@ -77,14 +82,7 @@ namespace GraphicalTestApp
             
         }
 
-        public void CollidewithTank(float deltatime)
-        {
-            if(hitbox.DetectCollision(Program.player2.hitbox))
-            {
-               // Destroy();
-                //Program.player2.Destroy();
-            }
-        }
+       
 
         public void Movedown(float deltatime)
         {
@@ -132,7 +130,21 @@ namespace GraphicalTestApp
 
         }
 
-        public void ScreenWrap(float deltatime)
+
+
+
+
+
+
+        public void CollidewithTank(float deltatime)
+        {
+            if (hitbox.DetectCollision(Program.player2.hitbox))
+            {
+                // Destroy(); this does not work as it destroys the player when the game starts
+            }
+        }
+
+        public void ScreenWrap(float deltatime) //prevents the player from leaving the screen
         {
             if (X > Game.gameWidth || Y > Game.gameHeight || X < 0 || Y < 0) //if the tank leaves the screen
             {

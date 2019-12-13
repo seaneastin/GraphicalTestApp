@@ -22,4 +22,10 @@ movement is ijkl
 to rotate the turret use u and o
 to fire use enter
 
-Gamepad not implemented yet
+
+
+
+
+Known Bugs
+
+tanks will drift if you attempt to rotate while moving

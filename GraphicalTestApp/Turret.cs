@@ -11,21 +11,32 @@ namespace GraphicalTestApp
         int maxammo = 5;
         Timer timer = new Timer();
         int ammo = 5;
-        Sprite tankturrent;
+        Sprite tankturret;
         private int _playernumber;
+
+        //these are used so when the tank creates a turret it will use diffrent keys
         int rotateleftcontrol;
         int rotaterightcontrol;
         int firecontrol;
+
+
+
         string bulletsprite;
-        public Turret(float x, float y, string sprite, int playernumber, string bulletSprite) : base(x, y)
+        public Turret(float x, float y, string sprite, int playernumber, string bulletSprite) : base(x, y) 
         {
+            //both the sprite for the turret and bullet are set 
+
 
             bulletsprite = bulletSprite;
 
 
 
-            _playernumber = playernumber;
 
+
+            _playernumber = playernumber;
+            //playernumber is passed down when tanks create turret
+
+            //the playernumber is used to assign controls for the turret
             if (_playernumber == 2)
             {
                 rotateleftcontrol = 85;
@@ -42,16 +53,16 @@ namespace GraphicalTestApp
             }
 
 
-            tankturrent = new Sprite(sprite);
+            tankturret = new Sprite(sprite);
             
-            tankturrent.X = -5;
-            tankturrent.Y = -40;
+            tankturret.X = -5;
+            tankturret.Y = -40;
             X = x;
             Y = y;
 
 
 
-            AddChild(tankturrent);
+            AddChild(tankturret);
             OnUpdate += rotateleft;
             OnUpdate += rotateright;
             OnUpdate += fire;
@@ -59,6 +70,9 @@ namespace GraphicalTestApp
 
         }
 
+
+
+        //this is the rotation for the turret
         public void rotateleft(float deltatime)
         {
             if (Input.IsKeyDown(rotateleftcontrol))
@@ -96,7 +110,7 @@ namespace GraphicalTestApp
             }
         }
 
-        public void restoreammo(float deltatime)
+        public void restoreammo(float deltatime) //restores ammo to the player
         {
             if (ammo < maxammo && timer.Seconds >= 2)
             {

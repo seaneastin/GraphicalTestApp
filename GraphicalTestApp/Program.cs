@@ -15,7 +15,7 @@ namespace GraphicalTestApp
 
             
 
-            Game game = new Game(1280, 760, "Tank Game by Sean");
+            Game game = new Game(1280, 760, "Two Player Tank Game");
 
             Actor root = new Actor();
             game.Root = root;

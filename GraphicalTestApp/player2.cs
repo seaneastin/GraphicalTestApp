@@ -8,7 +8,7 @@ namespace GraphicalTestApp
 {
     class Player2 : Entity
     {
-        private Sprite sprite;
+        private Sprite _sprite;
         public AABB hitbox;
         Turret turret;
         public Player2(float x, float y) : base(x, y)
@@ -16,10 +16,10 @@ namespace GraphicalTestApp
             X = x;
             Y = y;
 
-            sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankGreen.png");
+            _sprite = new Sprite("GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/tankGreen.png");
 
-            AddChild(sprite);
-            hitbox = new AABB(sprite.Width, sprite.Height);
+            AddChild(_sprite);
+            hitbox = new AABB(_sprite.Width, _sprite.Height);
             AddChild(hitbox);
             turret = new Turret(0, 0, "GraphicalTestApp/Assets/topdowntanks/PNG/Tanks/barrelGreen.png", 2, "GraphicalTestApp/Assets/topdowntanks/PNG/Bullets/bulletGreen_outline.png");
             AddChild(turret);
@@ -29,8 +29,8 @@ namespace GraphicalTestApp
             OnUpdate += Rotateleft;
             OnUpdate += RotateRight;
             OnUpdate += ScreenWrap;
-            OnUpdate += Drawcords;
-            OnUpdate += CollideWithTank;
+            OnDraw += Drawdebugstuff;
+            OnUpdate += CollidewithTank;
         }
 
 
@@ -42,28 +42,29 @@ namespace GraphicalTestApp
             }
 
             RemoveChild(hitbox);
-            RemoveChild(sprite);
+            RemoveChild(_sprite);
 
         }
 
-        public void Drawcords(float deltatime)
+        public void Drawdebugstuff()
         {
 
             //disable this on realease
             Raylib.Raylib.DrawText("Player2   X: " + X + " Y: " + Y, 1000, 5, 18, Raylib.Color.WHITE);
             Raylib.Raylib.DrawText("player2 Top: " + hitbox.Top + "Bottom: " + hitbox.Bottom + "Left: " + hitbox.Left + "Right: " + hitbox.Right, 700, 30, 18, Raylib.Color.WHITE);
         }
+        //this is all the functions for movement
 
         public void Moveup(float deltatime)
         {
-            if (Input.IsKeyDown(73)) //W
+            if (Input.IsKeyDown(87)) //W
             {
                 Vector3 facing = new Vector3(Getm12, Getm11, 0);
 
                 XAcceleration = facing.x * -100;
                 YAcceleration = facing.y * -100;
             }
-            else if (Input.IsKeyReleased(73)) //W
+            else if (Input.IsKeyReleased(87)) //W
             {
 
                 XAcceleration = 0;
@@ -75,64 +76,69 @@ namespace GraphicalTestApp
 
         }
 
-        public void CollideWithTank(float deltatime)
-        {
 
-            if (hitbox.DetectCollision(Program.player1.hitbox))
-            {
-                //{
-                //    Destroy();
-
-            }
-        }
 
         public void Movedown(float deltatime)
         {
-            if (Input.IsKeyDown(75))
+            if (Input.IsKeyDown(83))
             {
                 Vector3 facing = new Vector3(Getm12, Getm11, 0) * 100;
 
                 XAcceleration = facing.x;
                 YAcceleration = facing.y;
             }
-            else if (Input.IsKeyReleased(75))
+            else if (Input.IsKeyReleased(83))
             {
                 XAcceleration = 0;
                 XVelocity = 0;
                 YAcceleration = 0;
                 YVelocity = 0;
             }
-            //if (YVelocity < -.01f)
-            //{
-            //    YVelocity = -.01f;
-            //}
+            ////if (YVelocity < -.01f)
+            ////{
+            ////    YVelocity = -.01f;
+            ////}
         }
 
         public void Rotateleft(float deltatime)
         {
-            if (Input.IsKeyDown(74))
+            if (Input.IsKeyDown(65))
             {
                 Rotate(-1f * deltatime);
             }
-            else if (Input.IsKeyReleased(74))
+            else if (Input.IsKeyReleased(65))
             {
             }
         }
 
         public void RotateRight(float deltatime)
         {
-            if (Input.IsKeyDown(76))
+            if (Input.IsKeyDown(68))
             {
                 Rotate(1f * deltatime);
             }
-            else if (Input.IsKeyReleased(76))
+            else if (Input.IsKeyReleased(68))
             {
             }
 
 
         }
 
-        public void ScreenWrap(float deltatime)
+
+
+
+
+
+
+        public void CollidewithTank(float deltatime)
+        {
+            if (hitbox.DetectCollision(Program.player1.hitbox))
+            {
+                // Destroy(); this does not work as it destroys the player when the game starts
+            }
+        }
+
+        public void ScreenWrap(float deltatime) //prevents the player from leaving the screen
         {
             if (X > Game.gameWidth || Y > Game.gameHeight || X < 0 || Y < 0) //if the tank leaves the screen
             {
@@ -160,9 +166,8 @@ namespace GraphicalTestApp
 
 
             }
-
-
         }
+
         public void Destroy()
         {
             if (Parent != null)
@@ -171,6 +176,8 @@ namespace GraphicalTestApp
             }
             RemoveChild(hitbox);
             RemoveChild(turret);
+
         }
+
     }
 }
