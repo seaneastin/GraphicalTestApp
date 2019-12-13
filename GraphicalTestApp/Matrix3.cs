@@ -49,13 +49,6 @@ namespace GraphicalTestApp
 
 
 
-        public Matrix3(Matrix3 other)
-        {
-
-
-        }
-
-
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3(

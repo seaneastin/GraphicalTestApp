@@ -284,7 +284,52 @@
 
      **File**:  AABB.cs
     
-    Description: this is where collision detection and hitboxes are set up
+    Description: this where collision detection is done and also makes hitboxes
 
-        Name:
+    **Atributes
 
+        Name: _color
+        Description: this is the hitboxes color
+        type: Color
+
+        name: width
+        Description:
+        Type:
+
+        Name Height
+        Description:
+
+        Name: Top
+        Description: the top of the hitbox
+        type: property
+
+        Name: Bottom
+        Description: the Bottom of the hitbox
+        type: property
+
+        Name: Left
+        Description: the Left of the hitbox
+        type: property
+
+        Name: Right
+        Description: the Right of the hitbox
+        type: property
+
+
+        Name: AABB
+        Description: used to create a new instance of AABB
+        Type: function
+
+        Name: DetectColllision
+        Description: detects if the hitbox hits another hitbox
+        Type: function
+
+        Name: Draw
+        Description: Draws the hitbox on the screen
+        Type: Function
+
+     **File**:  Actor.cs
+    
+    Description: 
+
+    **Atributes
