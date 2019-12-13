@@ -29,3 +29,5 @@ to fire use enter
 Known Bugs
 
 tanks will drift if you attempt to rotate while moving
+
+if hitboxes are shown then you will see that sometimes hitboxes can still be triggered even though the player has been removed

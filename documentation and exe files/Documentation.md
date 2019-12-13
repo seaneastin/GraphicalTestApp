@@ -22,7 +22,7 @@
 
 - Player 2's controls are ijkl for movemnet and u and o for turret controls enter is used for fireing the turret.
 
-3.  Output Information(All information output to the user) 
+3.  Output Information
 -The program displays different information and textures based on 4 different possible states the can game can be in:
 
    
@@ -34,6 +34,9 @@ the game displays the ammo for each player and displays each player on the scree
 ## II. Design(This is where you document how your program works. The main game loop should be described here. Everything from the programs ending to its beginning should be documented here. You can use diagrams, gifs, or other images to help.)
 
 1. _System Architecture_(This is where you describe how your application flows. This should break down the main game loop and how the application works from start to end)
+
+the game starts by makeing the tank and then starting the scene the game will then go on untill someone quits
+
 
 | 
 |:-----------
@@ -76,6 +79,8 @@ the game displays the ammo for each player and displays each player on the scree
 
      **Attributes
      
+
+
         name : _sprite
         Desription: the tanks sprite
         Type: Sprite
@@ -96,7 +101,7 @@ the game displays the ammo for each player and displays each player on the scree
         name: Player1
         Description: the constructor for the tank
         type: function
-
+         parameters: float x, float y
 
 
         Name: Drawdebugstuff
@@ -108,26 +113,33 @@ the game displays the ammo for each player and displays each player on the scree
         Name: Moveup
         Description: the funcation for the player moveing up
         Tyoe: function
+        parameters: float deltatime
 
         Name: Movedown
         Description: the function for the player moveing down
         Tyoe: function
+        parameters: float deltatime
 
         Name: Rotateleft
         Description: rotates the player to the left
         type: function
+        parameters: float deltatime
 
         Name: Rotateleft
         Description: rotates the player to the left
         type: function
+        parameters: float deltatime
+
 
         Name: CollidewithTank
         Description: this was supposed to destroy the tank but is now unused although if you play with hitboxes showing it will still show collision with the other tank.
         type function
+        parameters: float deltatime
 
         Name: ScreenWrap
         Description: prevents the tank from leaveing the screen
         type: function
+        parameters: float deltatime
 
         Name: Destroy
         Description: destorys the player when called
@@ -140,6 +152,12 @@ the game displays the ammo for each player and displays each player on the scree
 
      **Attributes
      
+
+
+        Name: Player2
+        Descripition: the constructor for player 2
+        Type: function
+        
         name : _sprite
         Desription: the tanks sprite
         Type: Sprite
@@ -157,41 +175,41 @@ the game displays the ammo for each player and displays each player on the scree
         Visability: private
 
 
-        name: Player1
-        Description: the constructor for the tank
-        type: function
-
-
 
         Name: Drawdebugstuff
         Description: draws the players X and Y and the players hitbox location will not work on realease
         type: function
 
 
-
         Name: Moveup
         Description: the funcation for the player moveing up
         Tyoe: function
+        parameters: float deltatime
 
         Name: Movedown
         Description: the function for the player moveing down
         Tyoe: function
+        parameters: float deltatime
 
         Name: Rotateleft
         Description: rotates the player to the left
         type: function
+        parameters: float deltatime
 
         Name: Rotateleft
         Description: rotates the player to the left
         type: function
+        parameters: float deltatime
 
         Name: CollidewithTank
         Description: this was supposed to destroy the tank but is now unused although if you play with hitboxes showing it will still show collision with the other tank.
         type function
+        parameters: float deltatime
 
         Name: ScreenWrap
         Description: prevents the tank from leaveing the screen
         type: function
+        parameters: float deltatime
 
         Name: Destroy
         Description: destorys the player when called
@@ -210,6 +228,12 @@ the game displays the ammo for each player and displays each player on the scree
         Name: maxammo
         Description: the maximum amount of ammo the player can have
         Type: int
+
+
+        Name: turret
+        Description: the constructor for the turret
+        Type: function
+        float x, float y, string sprite, paremeters: int playernumber, string bulletSprite
 
          Name: timer
          Description: the timer that is used when refilling ammo
@@ -252,13 +276,17 @@ the game displays the ammo for each player and displays each player on the scree
          Name: rotateRight
          Description: rotates the turret to the Right
          Type: function
+         parameters: float deltatime
 
          Name: Fire
          Description: fires a bullet
          Type: function
+         parameters: float deltatime
 
          Name: RestoreAmmo
          Description: restores the ammo of the player uses the timer set up earlier to do this.
+         parameters: float deltatime
+
     **File**:  Bullet.cs
     
     Description: the bullet the turret shoots this will detect collision with the player and destroy if it goes off screen
@@ -268,6 +296,11 @@ the game displays the ammo for each player and displays each player on the scree
         Name: hitbox
         Description: the hitbox for the bullet
         Type: AABB
+
+        Name: bullet
+        Description: the constructor for the bullet
+        Type: function
+        Parameters: float x, float y, int playernumber, string Sprite
 
         Name: sprite
         Description: the bullets sprite
@@ -291,16 +324,25 @@ the game displays the ammo for each player and displays each player on the scree
 
     **Atributes
 
+
+
+
         Name: _color
         Description: this is the hitboxes color
         type: Color
 
+        Name: AABB
+        Description: the constructor for AABB
+        Type: function
+        Parameters: float width, float height
+
         name: width
         Description:
-        Type:
+        Type: Property
 
         Name Height
         Description:
+        Type: property
 
         Name: Top
         Description: the top of the hitbox
